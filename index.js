@@ -32,6 +32,16 @@ io.on('connection', (socket) => {
     //emit this to all clients except the client who sent it
     socket.broadcast.emit('element-update', elementData);
   });
+
+  socket.on('whiteboard-clear', () => {
+    elements = [];
+    //emit this to all clients except the client who sent it
+    socket.broadcast.emit('whiteboard-clear');
+  });
+
+  socket.on('disconnect', () => {
+    console.log(`user disconnected`);
+  });
 });
 
 app.get('/', (req, res) => {
@@ -43,9 +53,11 @@ const PORT = process.env.PORT || 3003;
 server.listen(PORT, () => console.log(`listening on port ${PORT}`));
 
 const updateElementInElements = (elementData) => {
-  const index = elements.findIndex((element) => element.ud === elementData.id);
+  //TODO uncomment if not working
+  // const index = elements.findIndex((element) => element.ud === elementData.id);
 
-  if (index === -1) return elements.push(elementData);
+  // if (index === -1) return elements.push(elementData);
 
-  elements[index] = elementData;
+  // elements[index] = elementData;
+  elements = elementData;
 };
