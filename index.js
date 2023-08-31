@@ -54,10 +54,10 @@ server.listen(PORT, () => console.log(`listening on port ${PORT}`));
 
 const updateElementInElements = (elementData) => {
   //TODO uncomment if not working
-  // const index = elements.findIndex((element) => element.ud === elementData.id);
+  const index = elements.findIndex((element) => element.id === elementData.id);
 
-  // if (index === -1) return elements.push(elementData);
+  if (index === -1) return elements.push(elementData);
 
-  // elements[index] = elementData;
-  elements = elementData;
+  elements[index] = elementData;
+  // elements = elementData;
 };
